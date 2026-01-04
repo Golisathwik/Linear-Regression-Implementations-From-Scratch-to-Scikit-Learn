@@ -89,3 +89,55 @@ $$b_{new} = b_{current} - (L \times D_b)$$
 
 **Step 5: Repeat**
 This process repeats 2000 times until the line settles on the optimal fit.
+
+---
+
+## 🚀 Implementation 3: Linear Regression using Scikit-Learn
+**Method:** Industry Standard Library
+
+This version utilizes `sklearn.linear_model.LinearRegression`. In a professional setting, we rarely calculate gradients manually. Instead, we use optimized libraries like Scikit-Learn, which handle the underlying mathematics using highly efficient C-based backends (LAPACK/BLAS).
+
+### 💻 Implementation Workflow
+The code follows the standard "Import -> Instantiate -> Fit -> Predict" lifecycle:
+
+**Step 1: Data Preparation (Reshaping)**
+Scikit-Learn models expect the input features ($X$) to be a **2D array** (a matrix), even if there is only one feature.
+* *Code:* `x_size = file[['size']]`
+* *Note:* The double brackets `[[ ]]` ensure pandas returns a DataFrame (2D) rather than a Series (1D).
+
+**Step 2: Model Instantiation**
+We create an instance of the Linear Regression class.
+* *Code:* `model = LinearRegression()`
+
+**Step 3: Training (The "Fit" Method)**
+This is where the magic happens. The `.fit()` method calculates the optimal $m$ and $b$ internally.
+* *Code:* `model.fit(x_size, y_price)`
+
+**Step 4: Extraction & Prediction**
+Once trained, we can extract the learned parameters or make predictions.
+* **Slope ($m$):** Accessed via `model.coef_`
+* **Intercept ($b$):** Accessed via `model.intercept_`
+* **Prediction:** `model.predict(new_data)`
+
+---
+
+## 📊 Comparison of Approaches
+
+| Feature | Simple Linear Regression | Gradient Descent (From Scratch) | Scikit-Learn |
+| :--- | :--- | :--- | :--- |
+| **Complexity** | Low (Basic Math) | High (Calculus & Loops) | Low (Abstracted) |
+| **Accuracy** | Exact | Approximate (depends on epochs) | Exact |
+| **Speed** | Fast for small data | Slow (Python loops) | Very Fast (Optimized C) |
+| **Use Case** | Understanding Stats | Understanding Neural Networks | **Real-world Projects** |
+
+---
+
+## 🛠️ How to Run
+1.  Clone the repository.
+2.  Ensure `predict.csv` is in the correct directory.
+3.  Run the desired script:
+    ```bash
+    python linear_regression_scratch.py
+    # or
+    python linear_regression_sklearn.py
+    ```

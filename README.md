@@ -140,4 +140,6 @@ Once trained, we can extract the learned parameters or make predictions.
     python linear_regression_scratch.py
     # or
     python linear_regression_sklearn.py
+    # or
+    python simple_linear_regression.py
     ```

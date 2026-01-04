@@ -46,7 +46,46 @@ Now that we have the slope ($m$), we can solve for $b$ (the base price) using th
 
 $$b = \bar{Y} - (m \times \bar{X})$$
 
----
 
 ### Key Insight
 This method guarantees the mathematically lowest possible error for the training data but is computationally expensive for massive datasets with millions of rows.
+
+---
+
+## 🚀 Implementation 2: Linear Regression from Scratch (Gradient Descent)
+**Method:** Iterative Optimization (Steepest Descent)
+
+
+Unlike the first method, which solves the problem instantly, this approach "learns" the best line over time. It starts with a random guess and iteratively refines the slope ($m$) and intercept ($b$) to minimize the error.
+
+### ⚠️ A Note on Hyperparameters
+* **Learning Rate (`L`):** `0.000001`
+* **Reasoning:** In this dataset, the target values (Price) are large (up to 170,000). When calculating the Mean Squared Error (MSE), these large numbers are squared, resulting in massive values.
+    * If the Learning Rate is too high (e.g., 0.01), the algorithm tries to take huge steps, causing the error to "explode" (overshoot) and the numbers to become unstable or infinite.
+    * We use a very small learning rate (`1e-6`) to ensure the model takes tiny, stable steps towards the minimum error without crashing.
+
+### ⚙️ The Training Loop (Step-by-Step)
+The model optimizes $m$ and $b$ over **2000 epochs** using the following logic:
+
+**Step 1: Initialization**
+We start with $m=0$ and $b=0$.
+
+**Step 2: Calculate Predictions ($Y_{pred}$)**
+For every data point, we calculate what the current line predicts:
+$$Y_{pred} = mX + b$$
+
+**Step 3: Calculate the Gradient (The Direction)**
+We need to know which way to move $m$ and $b$ to reduce the error. We find the partial derivative of the MSE function:
+
+* **Gradient for $m$:**
+    $$D_m = -\frac{2}{n} \sum X (Y_{actual} - Y_{pred})$$
+* **Gradient for $b$:**
+    $$D_b = -\frac{2}{n} \sum (Y_{actual} - Y_{pred})$$
+
+**Step 4: Update Weights (The Step)**
+We adjust the current values by moving in the opposite direction of the gradient, scaled by the Learning Rate ($L$):
+$$m_{new} = m_{current} - (L \times D_m)$$
+$$b_{new} = b_{current} - (L \times D_b)$$
+
+**Step 5: Repeat**
+This process repeats 2000 times until the line settles on the optimal fit.

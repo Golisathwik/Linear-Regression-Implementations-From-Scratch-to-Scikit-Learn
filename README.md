@@ -84,7 +84,9 @@ We need to know which way to move $m$ and $b$ to reduce the error. We find the p
 
 **Step 4: Update Weights (The Step)**
 We adjust the current values by moving in the opposite direction of the gradient, scaled by the Learning Rate ($L$):
+
 $$m_{new} = m_{current} - (L \times D_m)$$
+
 $$b_{new} = b_{current} - (L \times D_b)$$
 
 **Step 5: Repeat**

@@ -134,6 +134,53 @@ Once trained, we can extract the learned parameters or make predictions.
 
 ---
 
+## 🧮 Multiple Linear Regression: The Matrix Approach
+
+In Simple Linear Regression ($y = mx + c$), we use basic algebra to find the slope and intercept. However, when we have **multiple variables** ($x_1, x_2, x_3 \dots$), standard algebra becomes messy and inefficient.
+
+Instead, we use **Linear Algebra (Matrices)** to solve for all coefficients simultaneously.
+
+### 1. The Mathematical Model
+Instead of a simple line, we are now defining a **hyperplane**:
+
+$$y = b_0 + b_1x_1 + b_2x_2 + \dots + b_nx_n$$
+
+Where:
+* **$y$:** Predicted value (e.g., House Price).
+* **$b_0$:** Intercept (Bias).
+* **$b_1, \dots, b_n$:** Coefficients (Weights) for each feature.
+* **$x_1, \dots, x_n$:** Features (e.g., Size, Bedrooms, Age).
+
+---
+
+### 2. The Matrix Setup
+To calculate this efficiently, we arrange our data into three key matrices.
+
+#### A. The Feature Matrix ($X$)
+We add a **column of 1s** to the start of our features. This acts as the placeholder for the intercept ($b_0$).
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?X=\begin{bmatrix}1&x_{11}&x_{12}\\1&x_{21}&x_{22}\\1&x_{31}&x_{32}\\\vdots&\vdots&\vdots\end{bmatrix}" alt="Feature Matrix X" />
+</p>
+
+*(Rows represent individual data samples, Columns represent features like Intercept, Size, Bedrooms)*
+
+#### B. The Target Vector ($Y$)
+This contains the actual values we are trying to predict.
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?Y=\begin{bmatrix}y_1\\y_2\\y_3\\\vdots\end{bmatrix}" alt="Target Vector Y" />
+</p>
+
+#### C. The Coefficients Vector ($B$)
+This is what the model is trying to calculate ($b_0, b_1, b_2$).
+
+<p align="center">
+  <img src="https://latex.codecogs.com/svg.image?B=\begin{bmatrix}b_0\\b_1\\b_2\\\vdots\end{bmatrix}" alt="Coefficients Vector B" />
+</p>
+
+---
+
 ## 🛠️ How to Run
 1.  Clone the repository.
 2.  Ensure `predict.csv` is in the correct directory.

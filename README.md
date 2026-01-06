@@ -160,7 +160,7 @@ To calculate this efficiently, we arrange our data into three key matrices.
 We add a **column of 1s** to the start of our features. This acts as the placeholder for the intercept ($b_0$).
 
 <p align="center">
-  <img src="https://latex.codecogs.com/svg.image?X=\begin{bmatrix}1&x_{11}&x_{12}\\1&x_{21}&x_{22}\\1&x_{31}&x_{32}\\\vdots&\vdots&\vdots\end{bmatrix}" alt="Feature Matrix X" />
+  <img src="https://latex.codecogs.com/svg.image?X=\begin{bmatrix}1&x_{11}&x_{12}\\1&x_{21}&x_{22}\\1&x_{31}&x_{32}\end{bmatrix}" alt="Feature Matrix X" />
 </p>
 
 *(Rows represent individual data samples, Columns represent features like Intercept, Size, Bedrooms)*
